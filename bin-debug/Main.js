@@ -66,7 +66,8 @@ var Main = (function (_super) {
             RES.removeEventListener(RES.ResourceEvent.GROUP_LOAD_ERROR, this.onResourceLoadError, this);
             RES.removeEventListener(RES.ResourceEvent.GROUP_PROGRESS, this.onResourceProgress, this);
             RES.removeEventListener(RES.ResourceEvent.ITEM_LOAD_ERROR, this.onItemLoadError, this);
-            this.createGameScene();
+            //this.createGameScene();
+            this.addChild(new Game());
         }
     };
     /**
@@ -190,3 +191,4 @@ var Main = (function (_super) {
     return Main;
 })(egret.DisplayObjectContainer);
 egret.registerClass(Main,'Main');
+//# sourceMappingURL=Main.js.map

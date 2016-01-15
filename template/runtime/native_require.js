@@ -8,8 +8,15 @@ var game_file_list = [
 	"libs/modules/game/game.native.js",
 	"libs/modules/tween/tween.js",
 	"libs/modules/res/res.js",
+	"bin-debug/state/State.js",
+	"bin-debug/EndState.js",
+	"bin-debug/Game.js",
 	"bin-debug/LoadingUI.js",
 	"bin-debug/Main.js",
+	"bin-debug/state/IState.js",
+	"bin-debug/state/StateEvent.js",
+	"bin-debug/state/StateManager.js",
+	"bin-debug/TestState.js",
 	//----auto game_file_list end----
 ];
 
