@@ -20,5 +20,8 @@ class Game extends egret.DisplayObjectContainer
         stateManager.registerState("end",new EndState());
         stateManager.setCurStateName("first");
         console.log("aa")
+        var pad:GamePad = new GamePad(this.stage,"");
+        pad.init();
+        
     }
 }

@@ -11,6 +11,7 @@ var game_file_list = [
 	"bin-debug/state/State.js",
 	"bin-debug/EndState.js",
 	"bin-debug/Game.js",
+	"bin-debug/input/gamePad/GamePad.js",
 	"bin-debug/LoadingUI.js",
 	"bin-debug/Main.js",
 	"bin-debug/state/IState.js",

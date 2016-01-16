@@ -16,6 +16,8 @@ var Game = (function (_super) {
         stateManager.registerState("end", new EndState());
         stateManager.setCurStateName("first");
         console.log("aa");
+        var pad = new GamePad(this.stage, "");
+        pad.init();
     };
     return Game;
 })(egret.DisplayObjectContainer);
