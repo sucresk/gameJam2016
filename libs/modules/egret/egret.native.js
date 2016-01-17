@@ -2869,7 +2869,7 @@ var egret;
              * @returns {boolean}
              */
             p.isNetUrl = function (url) {
-                return url.indexOf("http://") != -1;
+                return url.indexOf("http://") != -1 || url.indexOf("HTTP://") != -1;
             };
             /**
              * @private
@@ -3032,7 +3032,7 @@ var egret;
              * @returns {boolean}
              */
             p.isNetUrl = function (url) {
-                return url.indexOf("http://") != -1;
+                return url.indexOf("http://") != -1 || url.indexOf("HTTP://") != -1;
             };
             /**
              * @private
