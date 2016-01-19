@@ -19,6 +19,8 @@ var State = (function (_super) {
         this.dispatchEvent(new StateEvent(StateEvent.NEXT, state));
         this.parent.removeChild(this);
     };
+    p.tick = function (advancedTime) {
+    };
     return State;
 })(egret.DisplayObjectContainer);
 egret.registerClass(State,'State',["IState","egret.IEventDispatcher"]);

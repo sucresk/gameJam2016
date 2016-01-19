@@ -77,8 +77,27 @@ class Main extends egret.DisplayObjectContainer {
             RES.removeEventListener(RES.ResourceEvent.GROUP_PROGRESS, this.onResourceProgress, this);
             RES.removeEventListener(RES.ResourceEvent.ITEM_LOAD_ERROR, this.onItemLoadError, this);
             //this.createGameScene();
+            this.createBg();
+            this.createLog();
             this.addChild(new Game());
+            
         }
+    }
+    private createBg():void
+    {
+        var bg:egret.Shape = new egret.Shape();
+        bg.graphics.beginFill(0xff9999);
+        bg.graphics.drawRect(0,0,this.stage.stageWidth, this.stage.stageHeight);
+        this.addChild(bg);
+    }
+    
+    private createLog():void
+    {
+        var logTxt:egret.TextField = new egret.TextField();
+        
+        logTxt.text = "width:" + this.stage.stageWidth + "\n" + "," + this.stage.stageHeight;
+        logTxt.y = 300;
+        this.addChild(logTxt);
     }
 
     /**

@@ -11,7 +11,23 @@
 			"file": "src/input/gamePad/GamePad.ts",
 			"settings":
 			{
-				"buffer_size": 574,
+				"buffer_size": 4311,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": ".git/config",
+			"settings":
+			{
+				"buffer_size": 415,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/C/Users/sukui/Documents/jsLibs/egret-game-library/physics/libsrc/package.json",
+			"settings":
+			{
+				"buffer_size": 193,
 				"line_ending": "Windows"
 			}
 		}
@@ -224,7 +240,7 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 2,
 			"sheets":
 			[
 				{
@@ -232,15 +248,15 @@
 					"file": "src/input/gamePad/GamePad.ts",
 					"settings":
 					{
-						"buffer_size": 574,
+						"buffer_size": 4311,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								554,
-								554
+								0,
+								0
 							]
 						],
 						"settings":
@@ -251,6 +267,60 @@
 						},
 						"translation.x": 0.0,
 						"translation.y": 45.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": ".git/config",
+					"settings":
+					{
+						"buffer_size": 415,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								353,
+								353
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/C/Users/sukui/Documents/jsLibs/egret-game-library/physics/libsrc/package.json",
+					"settings":
+					{
+						"buffer_size": 193,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JSON.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"

@@ -4,6 +4,21 @@ var StateManager = (function () {
         this._stateObj = {};
     }
     var d = __define,c=StateManager,p=c.prototype;
+    p.startTick = function () {
+        this._curTime = egret.getTimer();
+        egret.startTick(this.tick, this);
+    };
+    p.stopTick = function () {
+        egret.stopTick(this.tick, this);
+    };
+    p.tick = function (advancedTime) {
+        this._lastTime = this._curTime;
+        this._curTime = advancedTime;
+        if (this._curState) {
+            this._curState.tick(this._curTime - this._lastTime);
+        }
+        return true;
+    };
     p.registerState = function (name, state) {
         this._stateObj[name] = state;
     };

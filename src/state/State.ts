@@ -27,4 +27,9 @@ class State extends egret.DisplayObjectContainer implements IState
         this.dispatchEvent(new StateEvent(StateEvent.NEXT,state));
         this.parent.removeChild(this);
     }
+    
+    public tick(advancedTime:number):void
+    {
+        
+    }
 }

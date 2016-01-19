@@ -5,12 +5,36 @@ class StateManager{
     private _curState:IState;
     private _prevState:IState;
     
+    private _curTime:number;
+    private _lastTime:number;
+    
     public constructor(parent:egret.DisplayObjectContainer)
     {
         this._parent = parent;
         this._stateObj = {};
     }
     
+    public startTick():void
+    {
+        this._curTime = egret.getTimer();
+        egret.startTick(this.tick, this);
+    }
+    
+    public stopTick():void
+    {
+        egret.stopTick(this.tick, this);
+    }
+    public tick(advancedTime:number):boolean
+    {
+        this._lastTime = this._curTime;
+        this._curTime = advancedTime;
+       
+        if(this._curState)
+        {
+            this._curState.tick(this._curTime - this._lastTime);
+        }
+        return true;
+    }
     public registerState(name:string, state:IState):void
     {
         this._stateObj[name] = state;

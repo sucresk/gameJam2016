@@ -7,6 +7,7 @@ var TestState = (function (_super) {
     p.init = function () {
         this._text = new egret.TextField;
         this._text.text = "hello state";
+        this._text.y = 100;
         this.addChild(this._text);
         this.stage.addEventListener(egret.TouchEvent.TOUCH_END, this.onEnd, this);
     };
@@ -14,6 +15,9 @@ var TestState = (function (_super) {
         this.stage.removeEventListener(egret.TouchEvent.TOUCH_END, this.onEnd, this);
         console.log("first end");
         this.next("end");
+    };
+    p.tick = function (advancedTime) {
+        this._text.text = "test state<" + advancedTime;
     };
     return TestState;
 })(State);
