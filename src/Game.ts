@@ -40,5 +40,7 @@ class Game extends egret.DisplayObjectContainer
         pad.bg = padBg;
         pad.pad = padCircle;
         
+        var gesture:GestureController = new GestureController(this.stage);
+        
     }
 }

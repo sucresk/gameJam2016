@@ -15,16 +15,20 @@ var game_file_list = [
 	"bin-debug/Game.js",
 	"bin-debug/input/gamePad/GamePad.js",
 	"bin-debug/input/gamePad/GamePadEvent.js",
+	"bin-debug/input/gesture/GestureController.js",
+	"bin-debug/input/gesture/GestureRecognizer.js",
+	"bin-debug/input/gesture/GestureResult.js",
+	"bin-debug/input/gesture/GestureTemplate.js",
 	"bin-debug/input/Gesture.js",
 	"bin-debug/LoadingUI.js",
 	"bin-debug/Main.js",
 	"bin-debug/p2DebugDraw.js",
+	"bin-debug/p2Demo/BuoyancyState.js",
 	"bin-debug/PhysicState.js",
 	"bin-debug/state/IState.js",
 	"bin-debug/state/StateEvent.js",
 	"bin-debug/state/StateManager.js",
 	"bin-debug/TestState.js",
-	"bin-debug/p2Demo/BuoyancyState.js",
 	//----auto game_file_list end----
 ];
 

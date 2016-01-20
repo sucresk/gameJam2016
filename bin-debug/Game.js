@@ -32,6 +32,7 @@ var Game = (function (_super) {
         //this.addChild(padCircle);
         pad.bg = padBg;
         pad.pad = padCircle;
+        var gesture = new GestureController(this.stage);
     };
     return Game;
 })(egret.DisplayObjectContainer);
