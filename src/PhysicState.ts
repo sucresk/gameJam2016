@@ -64,7 +64,7 @@ class PhysicState extends State
         var positionX: number = Math.floor(e.stageX);
         var positionY: number = Math.floor(e.stageY);
         var shape: p2.Shape;
-        var body = new p2.Body({ mass: 1, position: [positionX, positionY], angularVelocity: 1 });
+        var body = new p2.Body({ mass: 1, position: [positionX, positionY], angularVelocity: 1,collisionResponse:true });
 
         var shapeType = this.types[Math.floor((Math.random() * this.types.length))];
         //shapeType = "particle";

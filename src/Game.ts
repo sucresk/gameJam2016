@@ -18,9 +18,20 @@ class Game extends egret.DisplayObjectContainer
         var stateManager:StateManager = new StateManager(this);
         stateManager.registerState("first",new TestState());
         stateManager.registerState("end",new EndState());
+        //p2 demo
         stateManager.registerState("physics",new PhysicState());
         stateManager.registerState("buoyancy",new BuoyancyState());
-        stateManager.setCurStateName("buoyancy");
+        stateManager.registerState("heightfield",new HeightfieldScene());
+        stateManager.registerState("kinematic",new KinematicState());
+        stateManager.registerState("lock",new LockState());
+        stateManager.registerState("piston",new PistonState());
+        stateManager.registerState("rayReflect",new RayReflectState());
+        stateManager.registerState("restitution",new RestitutionState());
+        stateManager.registerState("sleep",new SleepState());
+        stateManager.registerState("spring",new SpringsState());
+        stateManager.registerState("tearable",new TearableState());
+        
+        stateManager.setCurStateName("physics");
         stateManager.startTick();
         console.log("aa")
         var pad:GamePad = new GamePad(this.stage,"");
@@ -41,6 +52,14 @@ class Game extends egret.DisplayObjectContainer
         pad.pad = padCircle;
         
         var gesture:GestureController = new GestureController(this.stage);
+        //test banana/////////
+        var bObject:BananaObject = new BananaObject("first bananaObj");
+        var aObj:APhysicsObject = new APhysicsObject("firstAphyObj");
         
+        /////////////////
+        
+        var w:AppleWorld = new AppleWorld();
+        var ab:AppleBody = new AppleBody();
+        w.add(ab);
     }
 }

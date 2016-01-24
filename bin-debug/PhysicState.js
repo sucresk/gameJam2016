@@ -54,7 +54,7 @@ var PhysicState = (function (_super) {
         var positionX = Math.floor(e.stageX);
         var positionY = Math.floor(e.stageY);
         var shape;
-        var body = new p2.Body({ mass: 1, position: [positionX, positionY], angularVelocity: 1 });
+        var body = new p2.Body({ mass: 1, position: [positionX, positionY], angularVelocity: 1, collisionResponse: true });
         var shapeType = this.types[Math.floor((Math.random() * this.types.length))];
         //shapeType = "particle";
         switch (shapeType) {

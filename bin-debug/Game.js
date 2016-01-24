@@ -14,9 +14,19 @@ var Game = (function (_super) {
         var stateManager = new StateManager(this);
         stateManager.registerState("first", new TestState());
         stateManager.registerState("end", new EndState());
+        //p2 demo
         stateManager.registerState("physics", new PhysicState());
         stateManager.registerState("buoyancy", new BuoyancyState());
-        stateManager.setCurStateName("buoyancy");
+        stateManager.registerState("heightfield", new HeightfieldScene());
+        stateManager.registerState("kinematic", new KinematicState());
+        stateManager.registerState("lock", new LockState());
+        stateManager.registerState("piston", new PistonState());
+        stateManager.registerState("rayReflect", new RayReflectState());
+        stateManager.registerState("restitution", new RestitutionState());
+        stateManager.registerState("sleep", new SleepState());
+        stateManager.registerState("spring", new SpringsState());
+        stateManager.registerState("tearable", new TearableState());
+        stateManager.setCurStateName("physics");
         stateManager.startTick();
         console.log("aa");
         var pad = new GamePad(this.stage, "");
@@ -33,6 +43,13 @@ var Game = (function (_super) {
         pad.bg = padBg;
         pad.pad = padCircle;
         var gesture = new GestureController(this.stage);
+        //test banana/////////
+        var bObject = new BananaObject("first bananaObj");
+        var aObj = new APhysicsObject("firstAphyObj");
+        /////////////////
+        var w = new AppleWorld();
+        var ab = new AppleBody();
+        w.add(ab);
     };
     return Game;
 })(egret.DisplayObjectContainer);
