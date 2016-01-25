@@ -20,15 +20,20 @@ var AppleBody = (function () {
         this.velocity = new egret.Point();
         this._force = new egret.Point();
         this._acceleration = new egret.Point();
+        this.shapes = [];
     }
     var d = __define,c=AppleBody,p=c.prototype;
+    p.addShape = function (shape) {
+        shape.body = this;
+        this.shapes.push(shape);
+    };
     p.step = function (passTime) {
         //vt = v0 + at
         this.velocity.x += this._acceleration.x * passTime;
         this.velocity.y += this._acceleration.y * passTime;
         //st = s0 + vt 
-        this.position.x = this.velocity.x * passTime;
-        this.position.y = this.velocity.y * passTime;
+        this.position.x += this.velocity.x * passTime;
+        this.position.y += this.velocity.y * passTime;
     };
     p.setVelocity = function (vx, vy) {
         this._force.x = vx;
@@ -46,6 +51,10 @@ var AppleBody = (function () {
             return false;
         }
     );
+    p.applyForce = function (force) {
+        this._acceleration.x = force.x / this.mass;
+        this._acceleration.y = force.y / this.mass;
+    };
     p.applyImpulse = function (impulse) {
         //fs =mv;
     };
@@ -59,6 +68,12 @@ var AppleBody = (function () {
         return this._isStatic;
     };
     p.rotate = function (angle) {
+    };
+    p.onStartContact = function (bodyB) {
+    };
+    p.onStayContact = function (bodyB) {
+    };
+    p.onEndContact = function (bodyB) {
     };
     AppleBody.DYNAMIC = "dynamic";
     AppleBody.KINEMATIC = "kinematic";

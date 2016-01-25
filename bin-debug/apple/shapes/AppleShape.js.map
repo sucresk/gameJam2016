@@ -1,0 +1,1 @@
+{"version":3,"file":"AppleShape.js","sourceRoot":"","sources":["../../../src/apple/shapes/AppleShape.ts"],"names":["AppleShape","AppleShape.constructor","AppleShape.overlap"],"mappings":"AAAA;IAMIA;IAGAC,CAACA;;IAEMD,SAAOA,GAAdA,UAAeA,KAASA;QAEpBE,MAAMA,CAACA,CAACA,CAACA;IACbA,CAACA;IACLF,iBAACA;AAADA,CAACA,AAfD,IAeC;oBAfK,UAAU;AAef"}

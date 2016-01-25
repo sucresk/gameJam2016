@@ -30,8 +30,9 @@ class Game extends egret.DisplayObjectContainer
         stateManager.registerState("sleep",new SleepState());
         stateManager.registerState("spring",new SpringsState());
         stateManager.registerState("tearable",new TearableState());
+        stateManager.registerState("applePhy",new AppleState());
         
-        stateManager.setCurStateName("physics");
+        stateManager.setCurStateName("applePhy");
         stateManager.startTick();
         console.log("aa")
         var pad:GamePad = new GamePad(this.stage,"");

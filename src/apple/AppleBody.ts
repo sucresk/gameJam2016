@@ -8,10 +8,12 @@ class AppleBody
     public mass : number = 1;
     public position : egret.Point;
     public rotation : number = 0;
-    public shapes : Array<any>;
+    public shapes : Array<AppleShape>;
     public world: AppleWorld;
     public type : string;
     public velocity : egret.Point;
+    
+    public collisionResponse:boolean;
     
     protected _force : egret.Point;
     protected _acceleration:egret.Point;
@@ -34,21 +36,28 @@ class AppleBody
                  this._isKinematic = true;
                  break;
         }
-        this.position = position;
         
+        this.position = position;
         this.velocity = new egret.Point();
         this._force = new egret.Point();
         this._acceleration = new egret.Point();
+        
+        this.shapes = [];
     }
     
+    public addShape(shape:AppleShape):void
+    {
+        shape.body = this;
+        this.shapes.push(shape);
+    }
     public step(passTime:number):void
     {
         //vt = v0 + at
         this.velocity.x += this._acceleration.x * passTime;
         this.velocity.y += this._acceleration.y * passTime;
         //st = s0 + vt 
-        this.position.x = this.velocity.x * passTime;
-        this.position.y = this.velocity.y * passTime;
+        this.position.x += this.velocity.x * passTime;
+        this.position.y += this.velocity.y * passTime;
     }
     
     public setVelocity(vx:number, vy:number):void
@@ -68,7 +77,12 @@ class AppleBody
     {
         return false;
     }
-
+    
+    public applyForce(force:egret.Point):void
+    {
+        this._acceleration.x = force.x / this.mass;
+        this._acceleration.y = force.y / this.mass;
+    }
     public applyImpulse (impulse:egret.Point):void
     {
         //fs =mv;
@@ -91,6 +105,21 @@ class AppleBody
     }
 
     public rotate (angle:Number):void
+    {
+        
+    }
+    
+    public onStartContact(bodyB:AppleBody):void
+    {
+        
+    }
+    
+    public onStayContact(bodyB:AppleBody):void
+    {
+        
+    }
+    
+    public onEndContact(bodyB:AppleBody):void
     {
         
     }
