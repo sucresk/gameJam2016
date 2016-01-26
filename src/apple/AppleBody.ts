@@ -58,6 +58,9 @@ class AppleBody
         //st = s0 + vt 
         this.position.x += this.velocity.x * passTime;
         this.position.y += this.velocity.y * passTime;
+        
+        this._acceleration.x = 0;
+        this._acceleration.y = 0;
     }
     
     public setVelocity(vx:number, vy:number):void
@@ -78,10 +81,15 @@ class AppleBody
         return false;
     }
     
+    public applyGravity(g:egret.Point):void
+    {
+        this._acceleration.x += g.x;
+        this._acceleration.y += g.y;
+    }
     public applyForce(force:egret.Point):void
     {
-        this._acceleration.x = force.x / this.mass;
-        this._acceleration.y = force.y / this.mass;
+        this._acceleration.x += force.x / this.mass;
+        this._acceleration.y += force.y / this.mass;
     }
     public applyImpulse (impulse:egret.Point):void
     {
@@ -111,16 +119,16 @@ class AppleBody
     
     public onStartContact(bodyB:AppleBody):void
     {
-        
+        console.log("start");
     }
     
     public onStayContact(bodyB:AppleBody):void
     {
-        
+        console.log("stay");
     }
     
     public onEndContact(bodyB:AppleBody):void
     {
-        
+        console.log("end");
     }
 }

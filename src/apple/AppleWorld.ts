@@ -1,7 +1,7 @@
 class AppleWorld extends egret.EventDispatcher
 {
     
-    public gravity:egret.Point = new egret.Point(0,0.0001);
+    public gravity:egret.Point = new egret.Point(0,0);
     public steps:number = 10;
     
     private _bodies:Array<AppleBody>;
@@ -57,7 +57,7 @@ class AppleWorld extends egret.EventDispatcher
     {
         for(var i:number = 0; i < this._numBody; i++ )
         {
-            this._bodies[i].applyForce(this.gravity);
+            this._bodies[i].applyGravity(this.gravity);
             this._bodies[i].step(passTime);
         }
     }
@@ -75,9 +75,9 @@ class AppleWorld extends egret.EventDispatcher
     
     private solveBodyContact(bodyA:AppleBody, bodyB:AppleBody):void
     {
-        var overlap:number = this.checkBodyContact(bodyA, bodyB);
+        var overlap:egret.Point = this.checkBodyContact(bodyA, bodyB);
         var contact:AppleContact = this.findContact(bodyA,bodyB)
-        if(overlap > 0)
+        if(overlap)
         {
             if(contact == null)
             {
@@ -91,6 +91,7 @@ class AppleWorld extends egret.EventDispatcher
                 bodyA.onStayContact(bodyB);
                 bodyB.onStayContact(bodyA);
             }
+            this.reponseContace(bodyA, bodyB, overlap);
         }
         else if(contact != null)
         {
@@ -98,6 +99,34 @@ class AppleWorld extends egret.EventDispatcher
             bodyB.onEndContact(bodyA);
             this.removeContact(contact);
             this.dispatchEvent(new AppleContactEvent(AppleContactEvent.END, contact));
+        }
+    }
+    
+    private reponseContact(bodyA:AppleBody, bodyB:AppleBody, overlap:egret.Point):void
+    {
+        if(!bodyA.collisionResponse || !bodyB.collisionResponse)
+        {
+            return;
+        }
+        if(bodyA.type == AppleBody.DYNAMIC && bodyB.type == AppleBody.DYNAMIC)
+        {
+            
+        }
+        else if(bodyA.type == AppleBody.DYNAMIC)
+        {
+            var minOverlap:number = overlap.x > overlap.y ? overlap.y : overlap.x;
+            if(bodyA.velocity.x > 0)
+            {
+                bodyA.position.x -= minOverlap;
+            }
+            else if(bodyA.velocity.x < 0)
+            {
+                bodyA.position.x += minOverlap;
+            }
+        }
+        else if(bodyB.type == AppleBody.DYNAMIC)
+        {
+            
         }
     }
     
@@ -136,23 +165,23 @@ class AppleWorld extends egret.EventDispatcher
         return null;
     }
     
-    private checkBodyContact(bodyA:AppleBody, bodyB:AppleBody):number
+    private checkBodyContact(bodyA:AppleBody, bodyB:AppleBody):egret.Point
     {
         for(var i:number = 0, len:number = bodyA.shapes.length; i < len; i++)
         {
             for(var j:number = 0, jLen:number = bodyB.shapes.length; j < jLen; j++)
             {
-                var contact:number = this.checkShapeContact(bodyA.shapes[i], bodyB.shapes[i]);
-                if(contact > 0)
+                var contact:egret.Point = this.checkShapeContact(bodyA.shapes[i], bodyB.shapes[i]);
+                if(contact.x > 0 && contact.y > 0)
                 {
                     return contact;
                 }
             }
         }
-        return 0;
+        return null;
     }
     
-    private checkShapeContact(shapeA:AppleShape, shapeB:AppleShape):number
+    private checkShapeContact(shapeA:AppleShape, shapeB:AppleShape):egret.Point
     {
         return shapeA.overlap(shapeB);
     }

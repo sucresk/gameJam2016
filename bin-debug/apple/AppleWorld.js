@@ -2,7 +2,7 @@ var AppleWorld = (function (_super) {
     __extends(AppleWorld, _super);
     function AppleWorld() {
         _super.call(this);
-        this.gravity = new egret.Point(0, 0.0001);
+        this.gravity = new egret.Point(0, 0);
         this.steps = 10;
         this._numBody = 0;
         this._bodies = [];
@@ -38,7 +38,7 @@ var AppleWorld = (function (_super) {
     };
     p.step = function (passTime) {
         for (var i = 0; i < this._numBody; i++) {
-            this._bodies[i].applyForce(this.gravity);
+            this._bodies[i].applyGravity(this.gravity);
             this._bodies[i].step(passTime);
         }
     };
@@ -52,7 +52,7 @@ var AppleWorld = (function (_super) {
     p.solveBodyContact = function (bodyA, bodyB) {
         var overlap = this.checkBodyContact(bodyA, bodyB);
         var contact = this.findContact(bodyA, bodyB);
-        if (overlap > 0) {
+        if (overlap) {
             if (contact == null) {
                 bodyA.onStartContact(bodyB);
                 bodyB.onStartContact(bodyA);
@@ -100,12 +100,12 @@ var AppleWorld = (function (_super) {
         for (var i = 0, len = bodyA.shapes.length; i < len; i++) {
             for (var j = 0, jLen = bodyB.shapes.length; j < jLen; j++) {
                 var contact = this.checkShapeContact(bodyA.shapes[i], bodyB.shapes[i]);
-                if (contact > 0) {
+                if (contact.x > 0 && contact.y > 0) {
                     return contact;
                 }
             }
         }
-        return 0;
+        return null;
     };
     p.checkShapeContact = function (shapeA, shapeB) {
         return shapeA.overlap(shapeB);

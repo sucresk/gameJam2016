@@ -11,27 +11,32 @@ class AppleRect extends AppleShape
         this.y = -this.height / 2;
     }
     
-    public overlap(shape:any):number
+    public overlap(shape:any):egret.Point
     {
         var rect:AppleRect = <AppleRect> shape;
         if(rect)
         {
-            var disX:number = Math.abs(this.body.position.x + this.x - rect.body.position.x - rect.x) - this.width - rect.width;
-            var disY:number = Math.abs(this.body.position.y + this.y - rect.body.position.y - rect.y) - this.height - rect.height;
-            if(disX < 0 && disY < 0)
+            var disX:number = this.width/2 + rect.width/2;
+            var disY:number = this.height/2 + rect.height/2;
+            var overX:number = Math.abs(this.body.position.x + this.x - rect.body.position.x - rect.x);
+            var overY:number = Math.abs(this.body.position.y + this.y - rect.body.position.y - rect.y);
+            if(overX < disX )
             {
-                return -(disX + disY) / 2;
+                this.overPoint.x = disX - overX;
             }
-            else if(disX < 0)
+            else
             {
-                return -disX;
+                this.overPoint.x = 0;
             }
-            else if(disY < 0)
+            if(overY < disY )
             {
-                return -disY;
+                this.overPoint.y = disY - overY;
             }
-            return 0;  
+            else
+            {
+                this.overPoint.y = 0;
+            }
         }
-        return 0;
+        return this.overPoint;
     }
 }

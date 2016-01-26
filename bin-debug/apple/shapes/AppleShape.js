@@ -1,9 +1,10 @@
 var AppleShape = (function () {
     function AppleShape() {
+        this.overPoint = new egret.Point();
     }
     var d = __define,c=AppleShape,p=c.prototype;
     p.overlap = function (shape) {
-        return 0;
+        return this.overPoint;
     };
     return AppleShape;
 })();

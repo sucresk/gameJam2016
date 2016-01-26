@@ -11,20 +11,24 @@ var AppleRect = (function (_super) {
     p.overlap = function (shape) {
         var rect = shape;
         if (rect) {
-            var disX = Math.abs(this.body.position.x + this.x - rect.body.position.x - rect.x) - this.width - rect.width;
-            var disY = Math.abs(this.body.position.y + this.y - rect.body.position.y - rect.y) - this.height - rect.height;
-            if (disX < 0 && disY < 0) {
-                return -(disX + disY) / 2;
+            var disX = this.width / 2 + rect.width / 2;
+            var disY = this.height / 2 + rect.height / 2;
+            var overX = Math.abs(this.body.position.x + this.x - rect.body.position.x - rect.x);
+            var overY = Math.abs(this.body.position.y + this.y - rect.body.position.y - rect.y);
+            if (overX < disX) {
+                this.overPoint.x = disX - overX;
             }
-            else if (disX < 0) {
-                return -disX;
+            else {
+                this.overPoint.x = 0;
             }
-            else if (disY < 0) {
-                return -disY;
+            if (overY < disY) {
+                this.overPoint.y = disY - overY;
             }
-            return 0;
+            else {
+                this.overPoint.y = 0;
+            }
         }
-        return 0;
+        return this.overPoint;
     };
     return AppleRect;
 })(AppleShape);

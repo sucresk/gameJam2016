@@ -34,6 +34,8 @@ var AppleBody = (function () {
         //st = s0 + vt 
         this.position.x += this.velocity.x * passTime;
         this.position.y += this.velocity.y * passTime;
+        this._acceleration.x = 0;
+        this._acceleration.y = 0;
     };
     p.setVelocity = function (vx, vy) {
         this._force.x = vx;
@@ -51,9 +53,13 @@ var AppleBody = (function () {
             return false;
         }
     );
+    p.applyGravity = function (g) {
+        this._acceleration.x += g.x;
+        this._acceleration.y += g.y;
+    };
     p.applyForce = function (force) {
-        this._acceleration.x = force.x / this.mass;
-        this._acceleration.y = force.y / this.mass;
+        this._acceleration.x += force.x / this.mass;
+        this._acceleration.y += force.y / this.mass;
     };
     p.applyImpulse = function (impulse) {
         //fs =mv;
@@ -70,10 +76,13 @@ var AppleBody = (function () {
     p.rotate = function (angle) {
     };
     p.onStartContact = function (bodyB) {
+        console.log("start");
     };
     p.onStayContact = function (bodyB) {
+        console.log("stay");
     };
     p.onEndContact = function (bodyB) {
+        console.log("end");
     };
     AppleBody.DYNAMIC = "dynamic";
     AppleBody.KINEMATIC = "kinematic";
