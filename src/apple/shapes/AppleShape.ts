@@ -10,7 +10,7 @@ class AppleShape
         this.overPoint = new egret.Point();
     }
     
-    public overlap(shape:any):egret.Point
+    public overlap(shape:any, velocity:egret.Point):egret.Point
     {
         return this.overPoint;
     }

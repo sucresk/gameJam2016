@@ -11,7 +11,7 @@ class AppleRect extends AppleShape
         this.y = -this.height / 2;
     }
     
-    public overlap(shape:any):egret.Point
+    public overlap(shape:any, velocity:egret.Point):egret.Point
     {
         var rect:AppleRect = <AppleRect> shape;
         if(rect)
