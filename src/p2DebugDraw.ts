@@ -48,7 +48,7 @@ class p2DebugDraw {
     }
     public drawDebug(): void {
         this.sprite.graphics.clear();
-
+        
         var l: number = this.world.bodies.length;
         for (var i: number = 0; i < l; i++) {
             var body: p2.Body = this.world.bodies[i];
@@ -269,9 +269,11 @@ class p2DebugDraw {
             p = [x + localP[0], y + localP[1]];
             b.toWorldFrame(worldPoint, p);
             g.lineTo(worldPoint[0], worldPoint[1]);
+            
         }
 
         g.endFill();
+        
     }
 
     private drawPlane(shape: p2.Plane, b: p2.Body): void {
