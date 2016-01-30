@@ -1,13 +1,16 @@
-class Man extends egret.Sprite
+class Role extends egret.Sprite
 {
     
     public armature:dragonBones.Armature;
-    public constructor()
+    public name:string;
+    
+    public constructor(name:string = "man0")
     {
         super();
-        var skeletonData = RES.getRes("man0_json");
-        var textureData = RES.getRes("man0_texture_json");
-        var texture = RES.getRes("man0_texture_png");
+        this.name = name;
+        var skeletonData = RES.getRes(name + "_json");
+        var textureData = RES.getRes(name + "_texture_json");
+        var texture = RES.getRes(name + "_texture_png");
         
         console.log(skeletonData);
         console.log(textureData);
@@ -17,7 +20,7 @@ class Man extends egret.Sprite
         factory.addSkeletonData(dragonBones.DataParser.parseDragonBonesData(skeletonData));
         factory.addTextureAtlas(new dragonBones.EgretTextureAtlas(texture, textureData));
         
-        this.armature = factory.buildArmature("man0");
+        this.armature = factory.buildArmature(name);
         var armatureDisplay = this.armature.display;
         dragonBones.WorldClock.clock.add(this.armature);
         this.addChild(armatureDisplay);
@@ -25,8 +28,12 @@ class Man extends egret.Sprite
     
     public play(name:string):void
     {
-        this.armature.animation.gotoAndPlay(name,0,-1,0);
+        this.armature.animation.gotoAndPlay(name,0,-1,1);
     }
     
+    public remove():void
+    {
+        dragonBones.WorldClock.clock.remove(this.armature);
+    }
     
 }
