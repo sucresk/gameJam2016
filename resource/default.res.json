@@ -1,7 +1,7 @@
 {
 	"groups":[
 	{
-		"keys":"bgImage,egretIcon,sound_bg,sound_test,image_test,end_jpg,level1_rhy_json,level_0_json",
+		"keys":"bgImage,egretIcon,sound_bg,sound_test,image_test,end_jpg,level1_rhy_json,level_0_json,bg2_jpg",
 		"name":"preload"
 	},
 	{
@@ -12,7 +12,7 @@
 	{
 		"name":"bgImage",
 		"type":"image",
-		"url":"assets/walk.png"
+		"url":"assets/bg.jpg"
 	},
 	{
 		"name":"egretIcon",
@@ -55,5 +55,10 @@
 		"name":"level_0_json",
 		"type":"json",
 		"url":"config/level_0.json"
+	},
+	{
+		"name":"bg2_jpg",
+		"type":"image",
+		"url":"assets/bg2.jpg"
 	}]
 }

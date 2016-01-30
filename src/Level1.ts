@@ -42,7 +42,7 @@ class Level1 extends State
     public init():void
     {
         
-        var image:egret.Bitmap = this.createBitmapByName("end_jpg");
+        var image:egret.Bitmap = this.createBitmapByName("bg2_jpg");
        console.log("image_test",image)
        image.x = 0;
        image.y = 0;
@@ -54,7 +54,7 @@ class Level1 extends State
         this.testSprite.x = 200;
         this.testSprite.y = 50;
         this._debugText = new egret.TextField();
-        this._debugText.x = 300;
+        this._debugText.x = 400;
         this.addChild(this._debugText);
         
         this.initConfig();
@@ -67,6 +67,7 @@ class Level1 extends State
         var sound:egret.Sound = RES.getRes("sound_test");
         sound.play(0,1);
         
+        var gesture:GestureController = new GestureController(this.stage);
         
     }
     private initUI():void
@@ -107,7 +108,7 @@ class Level1 extends State
             this._rhythmArr.push(levelConfig[i].beat * 500);
             this._rhythmTypeArr.push(levelConfig[i].action);
         }
-        console.log(this._rhythmArr, this._rhythmTypeArr);
+        console.log(this._rhythmArr.length , "aaaaaaaaaaaaa");
         this._endIndex = this._rhythmArr.length;
     }
     
@@ -125,21 +126,21 @@ class Level1 extends State
     {
         this.testSprite.graphics.clear();
         this.testSprite.graphics.beginFill(0xffff00);
-        this.testSprite.graphics.drawCircle(0,0,100);
+        this.testSprite.graphics.drawCircle(0,0,30);
         this.testSprite.graphics.endFill();
     }
     private perfectTip():void
     {
         this.testSprite.graphics.clear();
         this.testSprite.graphics.beginFill(0xff0000);
-        this.testSprite.graphics.drawCircle(0,0,100);
+        this.testSprite.graphics.drawCircle(0,0,30);
         this.testSprite.graphics.endFill();
     }
     private normalTip():void
     {
         this.testSprite.graphics.clear();
         this.testSprite.graphics.beginFill(0x0000ff);
-        this.testSprite.graphics.drawCircle(0,0,100);
+        this.testSprite.graphics.drawCircle(0,0,30);
         this.testSprite.graphics.endFill();
     }
     
