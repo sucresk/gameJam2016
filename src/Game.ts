@@ -16,6 +16,11 @@ class Game extends egret.DisplayObjectContainer
         console.log("this is a new game!");
         
         var stateManager:StateManager = new StateManager(this);
+        
+        stateManager.registerState("level1", new Level1);
+        stateManager.setCurStateName("level1");
+        stateManager.startTick();
+        /*
         stateManager.registerState("first",new TestState());
         stateManager.registerState("end",new EndState());
         //p2 demo
@@ -62,5 +67,6 @@ class Game extends egret.DisplayObjectContainer
         var w:AppleWorld = new AppleWorld();
         var ab:AppleBody = new AppleBody();
         w.add(ab);
+        */
     }
 }
