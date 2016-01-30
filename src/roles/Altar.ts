@@ -1,16 +1,12 @@
-class Role extends egret.Sprite
+class Altar extends egret.Sprite
 {
-    
     public armature:dragonBones.Armature;
-    public name:string;
-    private _scale:number;
     
-    public constructor(name:string = "man0", scale:number = 0.35)
+    public constructor()
     {
         super();
-        this.name = name;
-        this._scale = scale;
-        console.log("name armature",name)
+        var name:string = "altar";
+        
         var skeletonData = RES.getRes(name + "_json");
         var textureData = RES.getRes(name + "_texture_json");
         var texture = RES.getRes(name + "_texture_png");
@@ -25,31 +21,32 @@ class Role extends egret.Sprite
         
         this.armature = factory.buildArmature(name);
         var armatureDisplay = this.armature.display;
-        armatureDisplay.scaleX = this._scale;
-        armatureDisplay.scaleY = this._scale;
+        //armatureDisplay.scaleX = this._scale;
+        //armatureDisplay.scaleY = this._scale;
         dragonBones.WorldClock.clock.add(this.armature);
         this.addChild(armatureDisplay);
     }
     
+    
     public play(name:string):void
     {
-        if(name == "right")
-        {
-            this.armature.animation.gotoAndPlay("left",0,-1,1);
-            this.scaleX = -1;
-        }
-        else if(name == "left")
-        {
-            this.armature.animation.gotoAndPlay("left",0,-1,1);
-            this.scaleX = 1;
-        }
-        else
-        {
-            this.armature.animation.gotoAndPlay(name,0,-1,1);
-        }
-        
+        this.armature.animation.gotoAndPlay(name,0,-1,1);  
     }
     
+    public normal():void
+    {
+        this.play("normal");
+    }
+    
+    public correct():void
+    {
+        this.play("correct");
+    }
+    
+    public wrong():void
+    {
+        this.play("wrong");
+    }
     public remove():void
     {
         dragonBones.WorldClock.clock.remove(this.armature);
