@@ -367,7 +367,7 @@ class Level1 extends State
                this.AllRight();
            }
        }
-       //this.addOneToken();
+       this.addOneToken();
     }
     public tick(advancedTime:number):void
     {
