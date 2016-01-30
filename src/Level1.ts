@@ -52,8 +52,13 @@ class Level1 extends State
     public gesture:GestureController;
     
     public tokens:egret.Bitmap[] = [];
-    public roleNames:string[] = ["man0"];
+    public roleNames:string[] = ["man0","wei"];
     public roles:Role[] = [];
+    
+    public decorationNames:string[] = ["barrel_png","flower_png","chair_png","toilet_png"];
+    public decorationPos:number[] = [150,200,480,200,150,700,480,700];
+    public decorations:Decoration[] = [];
+    public playDecorationNum:number = 4;
     
     public constructor()
     {
@@ -81,7 +86,7 @@ class Level1 extends State
         this.initConfig();
         this.initUI();
         
-        this.startTime();
+        
         this.stage.addEventListener(egret.TouchEvent.TOUCH_BEGIN, this.onTouchBegin,this);
         this.stage.addEventListener(egret.TouchEvent.TOUCH_END, this.onTouchEnd,this);
         
@@ -93,6 +98,7 @@ class Level1 extends State
         //this.gesture.start();
         
         this.initPillar();
+        this.initDecoration();
         /*
         var man:Man = new Man();
         man.x = 100;
@@ -102,6 +108,7 @@ class Level1 extends State
         */
         var head0:Head = this.createHead("head0_png")
         this.addHeadTo(head0,0);
+        /*
         var head1:Head = this.createHead("head0_png")
         this.addHeadTo(head1,1);
         var head2:Head = this.createHead("head0_png")
@@ -110,9 +117,11 @@ class Level1 extends State
         this.addHeadTo(head3,3);
         var head4:Head = this.createHead("head0_png")
         this.addHeadTo(head4,4);
+        */
         //head.play();
         this.helpSprite = new egret.Sprite();
         this.addChild(this.helpSprite);
+        this.startTime();
     }
     
     private initUI():void
@@ -146,7 +155,7 @@ class Level1 extends State
     }
     private initConfig():void
     {
-        var levelConfig:any = RES.getRes("level_0_json");
+        var levelConfig:any = RES.getRes("level_1_json");
         console.log(levelConfig)
         this._rhythmObjs = levelConfig;
         for(var i:number = 0, len:number = levelConfig.length; i < len; i++)
@@ -180,6 +189,17 @@ class Level1 extends State
         this._pillarArr.push(p2);
         this._pillarArr.push(p3);
         this._pillarArr.push(p4);
+    }
+    private initDecoration():void
+    {
+        for(var i:number = 0, len:number = this.decorationNames.length; i < len; i++)
+        {
+            var d:Decoration = new Decoration(this.decorationNames[i]);
+            d.x = this.decorationPos[i * 2];
+            d.y = this.decorationPos[i * 2 + 1];
+            this.decorations.push(d);
+            this.addChild(d);
+        }
     }
     private goodTip():void
     {
@@ -233,8 +253,8 @@ class Level1 extends State
         if(this._curTouchType == Level1.TYPE_GESTURE)
         {
             var obj:any = this._rhythmObjs[this._curIndex];
-            console.log("ddddddddd", obj.line, e.data)
-            if(obj.line == e.data)
+            console.log("ddddddddd", obj.gesture, e.data)
+            if(obj.gesture == e.data)
             {
                 this._touchType = Level1.TYPE_GESTURE;
             }
@@ -342,7 +362,7 @@ class Level1 extends State
                this.AllRight();
            }
        }
-       this.addOneToken();
+       //this.addOneToken();
     }
     public tick(advancedTime:number):void
     {
@@ -524,6 +544,12 @@ class Level1 extends State
         {
             this.roles[i].play("hit");
         }
+        var n:number = this.playDecorationNum < this.decorations.length ? 
+                       this.playDecorationNum : this.decorations.length;
+        for(i = 0, len = n; i < len; i++)
+        {
+            this.decorations[i].play();
+        }
     }
     
     public AllLeft():void
@@ -536,6 +562,13 @@ class Level1 extends State
         {
             this.roles[i].play("left");
         }
+        
+        var n:number = this.playDecorationNum < this.decorations.length ? 
+                       this.playDecorationNum : this.decorations.length;
+        for(i = 0, len = n; i < len; i++)
+        {
+            this.decorations[i].play();
+        }
     }
     
     public AllRight():void
@@ -547,6 +580,13 @@ class Level1 extends State
         for(i = 0,len = this.roles.length; i < len; i++)
         {
             this.roles[i].play("left");
+        }
+        
+        var n:number = this.playDecorationNum < this.decorations.length ? 
+                       this.playDecorationNum : this.decorations.length;
+        for(i = 0, len = n; i < len; i++)
+        {
+            this.decorations[i].play();
         }
     }
     
@@ -609,7 +649,8 @@ class Level1 extends State
     
     private addOneRole():void
     {
-        var i:number = Math.floor(Math.random() * this.roles.length);
+        var i:number = Math.floor(Math.random() * this.roleNames.length);
+        console.log("ccccccccccccc", i , this.roleNames.length)
         var r:Role = this.createRole(i);
         this.addRole(r);
     }
