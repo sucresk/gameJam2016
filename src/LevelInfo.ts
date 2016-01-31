@@ -1,7 +1,8 @@
 class LevelInfo extends State
 {
     
-    public imageNames:string[] = ["info0_jpg","info1_jpg","info2_jpg","info3_jpg","info4_jpg","info5_jpg"];
+    public imageNames:string[] = ["info0_jpg","info1_jpg","info2_jpg","info3_jpg","info4_jpg",
+                                  "info5_jpg","info6_jpg","info7_jpg","info8_jpg","info9_jpg","info10_jpg"];
     public images:egret.Bitmap[] = [];
     public bg:egret.Bitmap;
     
@@ -57,7 +58,7 @@ class LevelInfo extends State
     private onTouchBegin(e:egret.TouchEvent):void
     {
         this._curIndex++
-        if(this._curIndex == 4)
+        if(this._curIndex == 7)
         {
             if(this.bg1Channel)
             {
