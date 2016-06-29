@@ -483,7 +483,15 @@ class Level1 extends State
         {
             return;
         }
-        this._curTime += advancedTime;
+        if(this.bgChannel)
+        {
+           this._curTime = this.bgChannel.position * 1000;
+        }
+        else
+        {
+            this._curTime += advancedTime;
+        }
+        
         this._debugText.text = this._curTime.toString();
         while(this._curTime > this._curHitTime + this.goodTime && this._curIndex < this._endIndex)
         {
